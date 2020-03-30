@@ -22,7 +22,6 @@ function Square(props) {
         </button>
     )
 }
-
 class Board extends React.Component {
     constructor(props) {
         super(props)
@@ -33,26 +32,25 @@ class Board extends React.Component {
     }
 
     handleClick(i) {
-        const squares = this.state.squares.slice(); //ti simasia exei na kano copy tou state array afou entelei to setState allazei to value tou state? 
+        const squares = this.state.squares.slice(); //core concept tou functional programming (na diavaso) to immutability
         if (calculateWinner(squares) || squares[i]) {
-            return; //ti epistrefei?
+            return; //ti epistrefei? kanei break o kodikas kai den proxoraei parakato
         }
         squares[i] = this.state.xIsNext ? 'X' : 'O';
-        console.log('oo', squares, this.state)
         this.setState({
             squares: squares,
             xIsNext: !this.state.xIsNext
         });
-        console.log('ee', this.state)
     }
 
     renderSquare(i) {
         return (
             <Square
                 value={this.state.squares[i]}
-                onClick={() => this.handleClick(i)} //2. arrow functions vs functions os pros to this kai to bind
+                onClick={() => this.handleClick(i)} //lexical scope
             />
         );
+
     }
 
     render() {
