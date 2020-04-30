@@ -13,6 +13,7 @@ import './index.css';
         );
     }
 }*/
+
 function Square(props) {
     return (
         <button
@@ -22,6 +23,9 @@ function Square(props) {
         </button>
     )
 }
+
+// ========================================
+
 class Board extends React.Component {
     constructor(props) {
         super(props)
@@ -32,9 +36,9 @@ class Board extends React.Component {
     }
 
     handleClick(i) {
-        const squares = this.state.squares.slice(); //core concept tou functional programming (na diavaso) to immutability
+        const squares = this.state.squares.slice();
         if (calculateWinner(squares) || squares[i]) {
-            return; //ti epistrefei? kanei break o kodikas kai den proxoraei parakato
+            return;
         }
         squares[i] = this.state.xIsNext ? 'X' : 'O';
         this.setState({
@@ -47,7 +51,7 @@ class Board extends React.Component {
         return (
             <Square
                 value={this.state.squares[i]}
-                onClick={() => this.handleClick(i)} //lexical scope
+                onClick={() => this.handleClick(i)}
             />
         );
 
@@ -85,13 +89,14 @@ class Board extends React.Component {
     }
 }
 
-
 // ========================================
 
 ReactDOM.render(
     <Board />,
     document.getElementById('root')
 );
+
+// ========================================
 
 function calculateWinner(squares) {
     const lines = [
